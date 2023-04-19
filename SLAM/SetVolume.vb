@@ -2,6 +2,12 @@
 
     Public Volume As Integer
 
+    Public Sub New(Optional ByVal InitialVolume As Integer = 0)
+        InitializeComponent()
+        Volume = InitialVolume
+        VolumeNumber.Text = Convert.ToInt32(Volume)
+    End Sub
+
     Private Sub SelectButton_Click(sender As Object, e As EventArgs) Handles SelectButton.Click
         Volume = Convert.ToInt32(VolumeNumber.Text)
         DialogResult = Windows.Forms.DialogResult.OK

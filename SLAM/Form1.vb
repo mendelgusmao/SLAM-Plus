@@ -915,10 +915,20 @@ Public Class Form1
     End Sub
 
     Private Sub SetVolumeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetVolumeToolStripMenuItem.Click
-        Dim SetVolumeDialog As New SetVolume
+        Dim SelectedCount = TrackList.SelectedIndices.Count()
+        Dim SetVolumeDialog As SetVolume = New SetVolume
+
+        If SelectedCount = 1 Then
+            Dim CurrentVolume As Integer
+
+            For Each index In TrackList.SelectedIndices
+                CurrentVolume = GetCurrentGame.tracks(index).volume
+            Next
+
+            SetVolumeDialog = New SetVolume(CurrentVolume)
+        End If
 
         If SetVolumeDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
-
             For Each index In TrackList.SelectedIndices
                 GetCurrentGame.tracks(index).volume = SetVolumeDialog.Volume
             Next
