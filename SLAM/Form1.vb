@@ -136,6 +136,9 @@ Public Class Form1
         If My.Settings.StartMinimized Then
             WindowState = FormWindowState.Minimized
         End If
+
+        Dim Server As New APIServer
+        Server.Start(Me.Games)
     End Sub
 
     Private Sub WaveCreator(File As String, outputFile As String, Game As SourceGame)
